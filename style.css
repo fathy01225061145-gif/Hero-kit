@@ -1,0 +1,171 @@
+/* ========== الألوان والخطوط (غيّرها من هنا) ========== */
+:root {
+  --main: #17024f;        /* اللون الأساسي */
+  --main-dark: #05000d;
+  --accent: #e8a317;      /* لون الزر */
+                            /* خلفية الصفحة   */
+  --card: rgb(255, 255, 253);
+  --text: #000807;
+  --muted: #01100b;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+s
+body {
+  font-family: "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
+  background-position:center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text);
+  line-height: 1.7;
+  min-width: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== الهيدر واللوجو (فوق على الشمال) ========== */
+.site-header {
+  
+  direction: ltr;                 /* عشان اللوجو يبقى على الشمال */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #17024f;
+  border-bottom: 3px solid var(--main);
+}
+.logo img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+/* ========== المحتوى ========== */
+.container {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.page-title {
+  font-size: 2rem;
+  color: var(--main);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* ========== كروت المنتجات ========== */
+.products {
+  display: grid;
+  justify-content: start;
+  justify-items: stretch;
+  direction: rtl;
+  gap: 20px;
+  width: 100%;
+}
+.product-card {
+  width: 300px;
+  max-width: 300px;
+  min-width: 300px;
+  box-sizing: border-box;
+   flex-direction: column;
+   display: flex;
+  background-color: #eef1ef;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.product-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  background: #e3e7e4;
+}
+.product-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.product-name { font-size: 1.2rem; color: var(--main-dark); }
+.product-desc { color: var(--muted); font-size: 0.95rem; flex: 1; }
+
+/* ========== زر الطلب ========== */
+.order-btn {
+  display: inline-block;
+  text-align: center;
+  background: var(--accent);
+  color: #1d1500;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.15s, background 0.15s;
+}
+.order-btn:hover { background: #f2b52f; transform: translateY(-2px); }
+.order-btn.full { width: 100%; margin-top: 18px; }
+
+/* ========== فورم الطلب ========== */
+.order-form {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--card);
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.order-form label {
+  display: block;
+  margin: 14px 0 6px;
+  font-weight: 700;
+}
+.order-form input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1.5px solid #cfd6d3;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+.order-form input:focus {
+  outline: none;
+  border-color: var(--main);
+  box-shadow: 0 0 0 3px rgba(15, 92, 77, 0.15);
+}
+.order-form input[readonly] { background: #eef1ef; }
+.loc-btn {
+  margin-top: 8px;
+  background: none;
+  border: 1.5px solid var(--main);
+  color: var(--main);
+  padding: 7px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.loc-btn:hover { background: var(--main); color: #fff; }
+
+/* ========== الفوتر ========== */
+.site-footer {
+  margin-top:auto ;
+  text-align: center;
+  padding: 18px;
+  background: var(--main);
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+/* ========== موبايل ========== */
+@media (max-width: 600px) {
+  .logo img { height: 48px; }
+  .page-title { font-size: 1.5rem; }
+}

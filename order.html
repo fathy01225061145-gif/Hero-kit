@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>طلب المنتج</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">
+      <img src="logo.jpg" alt="لوجو الشركة">
+    </a>
+  </header>
+
+  <main class="container">
+    <form class="order-form" id="orderForm">
+      <h1 class="page-title">طلب المنتج</h1>
+
+      <label for="product">المنتج</label>
+      <input type="text" id="product" name="product" readonly>
+
+      <label for="qty">الكمية</label>
+      <input type="number" id="qty" name="qty" min="1" value="1" required>
+
+      <label for="name">الاسم</label>
+      <input type="text" id="name" name="name" placeholder="اكتب اسمك" required>
+
+      <label for="phone">رقم الفون</label>
+      <input type="tel" id="phone" name="phone" placeholder="مثال: 01000000000" required>
+
+      <label for="location">الموقع</label>
+      <input type="text" id="location" name="location" placeholder="العنوان بالتفصيل" required>
+      <button type="button" class="loc-btn" id="locBtn">استخدم موقعي الحالي</button>
+
+      <button type="submit" class="order-btn full">إرسال الطلب</button>
+    </form>
+  </main>
+
+  <script>
+    // اسم المنتج يجي من الرابط
+    var params = new URLSearchParams(location.search);
+    document.getElementById('product').value = params.get('product') || '';
+
+    // زر تحديد الموقع الحالي
+    document.getElementById('locBtn').addEventListener('click', function () {
+      if (!navigator.geolocation) { alert('المتصفح لا يدعم تحديد الموقع'); return; }
+      navigator.geolocation.getCurrentPosition(function (p) {
+        document.getElementById('location').value =
+          'https://maps.google.com/?q=' + p.coords.latitude + ',' + p.coords.longitude;
+      }, function () { alert('تعذر تحديد الموقع، اكتب العنوان يدويًا'); });
+    });
+
+    // إرسال الطلب على واتساب
+    // غيّر الرقم هنا لرقم الشركة (بالصيغة الدولية بدون + ، مثال مصر: 201000000000)
+    var COMPANY_WHATSAPP = '201207198840';
+
+    document.getElementById('orderForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = e.target;
+      var msg = 'طلب جديد\n' +
+        'المنتج: ' + f.product.value + '\n' +
+        'الكمية: ' + f.qty.value + '\n' +
+        'الاسم: ' + f.name.value + '\n' +
+        'الفون: ' + f.phone.value + '\n' +
+        'الموقع: ' + f.location.value;
+      window.open('https://wa.me/' + COMPANY_WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank');
+    });
+  </script>
+
+</body>
+</html>

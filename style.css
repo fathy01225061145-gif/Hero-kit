@@ -3,7 +3,7 @@
   --main: #17024f;        /* اللون الأساسي */
   --main-dark: #05000d;
   --accent: #e8a317;      /* لون الزر */
-                            /* خلفية الصفحة   */
+  background-image: url(logo.jpg);                       /* خلفية الصفحة   */
   --card: rgb(255, 255, 253);
   --text: #000807;
   --muted: #01100b;
